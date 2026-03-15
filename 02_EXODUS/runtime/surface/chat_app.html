@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URIM Local Grounded Chat</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      margin: 0;
+      background: #f4f6f8;
+      color: #1b232c;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    .chat-shell {
+      background: #ffffff;
+      border: 1px solid #d8dde3;
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(17, 24, 39, 0.08);
+    }
+    #chat-log {
+      min-height: 200px;
+      max-height: 420px;
+      overflow: auto;
+      border: 1px solid #e3e8ee;
+      border-radius: 6px;
+      padding: 12px;
+      background: #f9fbfc;
+      white-space: pre-wrap;
+      margin-bottom: 12px;
+    }
+    .controls {
+      display: grid;
+      gap: 10px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      resize: vertical;
+      padding: 10px;
+      border: 1px solid #c9d1d9;
+      border-radius: 6px;
+      font: inherit;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    button {
+      border: 0;
+      border-radius: 6px;
+      padding: 10px 14px;
+      background: #0f4c81;
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.secondary {
+      background: #3f556b;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>URIM Local Grounded Chat</h1>
+    <section class="chat-shell">
+      <div id="chat-log"></div>
+      <div class="controls">
+        <label for="question-input">Question</label>
+        <textarea id="question-input" placeholder="Ask a grounded question."></textarea>
+        <div class="actions">
+          <label>
+            <input id="source-toggle" type="checkbox">
+            Request source disclosure
+          </label>
+          <button id="ask-button" type="button">Ask</button>
+          <button id="save-session-button" type="button" class="secondary">Save Session</button>
+        </div>
+      </div>
+      <div id="status"></div>
+    </section>
+  </main>
+  <script src="./chat_app.js"></script>
+</body>
+</html>

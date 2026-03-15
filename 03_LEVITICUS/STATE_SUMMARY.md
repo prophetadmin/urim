@@ -1,7 +1,7 @@
 ### `03_LEVITICUS/STATE_SUMMARY.md`
 
 **Active Phase**
-3
+4
 
 **Roadmap Version**
 v2
@@ -9,16 +9,16 @@ v2
 **Completed Phases**
 - 1
 - 2
+- 3
 
 **Current Work Artifact**
-02_EXODUS/runtime/surface/chat_app.html
+02_EXODUS/tests/validation_harness.ps1
 
 **Open Risks**
-- Phase 3 surface and session artifacts under `02_EXODUS/runtime/` are not yet present, blocking exit criteria progression.
-- Phase 3 smoke command execution may be blocked by host PowerShell execution policy without process-scoped bypass.
-- Host PowerShell execution policy may block direct `-File` test invocation without process-scoped bypass.
+- Phase 4 validation harness artifacts under `02_EXODUS/tests/` are not yet present, blocking exit criteria progression.
+- Host PowerShell execution policy may block direct `powershell -NoProfile -File <script>` validation commands without process-scoped bypass.
 
 **Deferred Registry**
 
 **Next Deterministic Objective**
-Create file `02_EXODUS/runtime/surface/chat_app.html` to satisfy the first unmet Active Phase exit criterion: `File exists at 02_EXODUS/runtime/surface/chat_app.html.`
+Create file `02_EXODUS/tests/validation_harness.ps1` to satisfy the first unmet Active Phase exit criterion: `File exists at 02_EXODUS/tests/validation_harness.ps1.`
