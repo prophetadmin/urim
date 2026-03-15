@@ -6,6 +6,20 @@ URIM was built using the MetaDictum framework from a separate repository and ser
 
 It embeds a user question through a local embedding service, retrieves candidate matches from Qdrant, resolves those matches into boxed markdown sources on disk, and generates answers from the resolved authority content rather than from vector payload text alone.
 
+## MetaDictum Context
+
+MetaDictum is an artifact-governed framework for deterministic, multi-session AI-assisted project execution, designed to keep project continuity in repository artifacts instead of fragile chat context.
+
+The MetaDictum repository provides the documentation and reusable template that implement that workflow.
+
+The operational scaffold in MetaDictum lives in `template/project/`. URIM uses that workspace model, which is why this repository is organized into these top-level directories:
+
+- `01_GENESIS/` - raw ideas and seed creation
+- `02_EXODUS/` - implementation work
+- `03_LEVITICUS/` - prompts, schemas, and runtime governance artifacts
+- `04_DEUTERONOMY/` - optional distilled canon
+- `05_NUMBERS/` - optional session and history artifacts
+
 ## What URIM Does
 
 - Uses a fixed local stack for chat generation, embeddings, and vector retrieval.
