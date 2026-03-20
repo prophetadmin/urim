@@ -136,15 +136,14 @@ Section 12 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
   - at least one command-based Exit Criterion
   - at least one non-documentation produced artifact under `02_EXODUS/`
   - at least one non-dry-run command criterion
-- Every `implementation` phase MUST include its canonical phase completion
-  receipt path under
+- Every phase MUST include its canonical phase completion receipt path under
   `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`
   in `Produced Artifacts`.
-- Every `implementation` phase MUST include Exit Criteria requiring both:
+- Every phase MUST include Exit Criteria requiring both:
   - `File exists at <canonical receipt path>.`
   - `<canonical receipt path> is generated strictly from 03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md without schema deviation.`
-- Receipt criteria are required completion conditions for implementation phases
-  and supplement rather than replace artifact-specific sufficiency proof.
+- Receipt criteria are required completion conditions for every phase and
+  supplement rather than replace artifact-specific or command-based proof.
 - A roadmap is invalid if all implementation progress can be satisfied by
   `.md` file existence and anchor criteria.
 - A roadmap is invalid if any mandatory requirement is mapped without at least
@@ -174,8 +173,8 @@ Section 12 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
 - A roadmap is invalid if an implementation phase can complete solely because
   its listed produced artifacts already exist and one generic smoke command
   exits with code 0.
-- A roadmap is invalid if an implementation phase can complete through
-  pre-existing sufficiency without its canonical project-pass receipt.
+- A roadmap is invalid if any phase can complete while its canonical
+  project-pass receipt criteria remain unmet.
 - If the seed or requirements ledger implies integration with pre-existing
   repository artifacts, relevant implementation phases MUST not use
   preservation-only semantics.

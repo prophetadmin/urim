@@ -291,6 +291,7 @@ roadmap and state-schema constraints.
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/status_sync.md`
@@ -311,6 +312,9 @@ Guardrails
 Must not modify roadmap content.
 Must not include historical narrative.
 Must derive state from roadmap exit-criteria evaluation.
+Must treat canonical phase receipt criteria as ordinary required Exit Criteria.
+Must not mark a phase complete when non-receipt criteria are true but required
+receipt criteria remain unmet.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
@@ -319,6 +323,7 @@ Roadmap version mismatch between state summary and latest active roadmap artifac
 Multiple Current Work Artifact fields.
 Completed Phases containing non-identifiers.
 Objective not tied to unmet Active Phase Exit Criteria.
+Phase advanced without required canonical phase receipt criteria satisfied.
 
 Deterministic Advancement Rule
 `/status_sync` is complete only when `03_LEVITICUS/STATE_SUMMARY.md` validates
@@ -337,6 +342,7 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/resume.md`
@@ -357,6 +363,8 @@ Guardrails
 Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts or missing phases.
 Must halt if selected objective does not advance one unmet Exit Criterion.
+Must not select phase advancement when required canonical phase receipt
+criteria for the Active Phase remain unmet.
 Must not rely on unstated chat memory.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
@@ -366,6 +374,7 @@ Roadmap version mismatch between state summary and latest active roadmap artifac
 Completed Phases containing descriptive text.
 Cross-phase editing attempt.
 Premature phase advancement attempt.
+Phase advancement attempted before required canonical receipt criteria are met.
 
 Deterministic Advancement Rule
 `/resume` is complete only when one objective advances exactly one unmet Exit
@@ -385,6 +394,7 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/validate_phase.md`
@@ -401,6 +411,8 @@ Final PASS requires all criteria PASS.
 If FAIL, include exactly one Next Deterministic Objective for the first unmet
 criterion.
 Output is ephemeral and must not be written to project artifacts.
+Ephemeral validation output does not replace any canonical phase receipt
+required for completion.
 
 Guardrails
 Must not modify any artifact.
@@ -434,9 +446,11 @@ Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Runtime/resume.md`
+`03_LEVITICUS/Prompts/Runtime/record_phase_completion.md`
 `03_LEVITICUS/Prompts/Runtime/status_sync.md`
 `03_LEVITICUS/Prompts/Runtime/resume_phase.md`
 
@@ -447,28 +461,37 @@ Explicit phase conflict override declared before execution
 Output Contract
 Must preserve atomic `/resume` behavior for each internal step.
 Must execute `/resume` repeatedly against one Active Phase only.
+When the next unmet criterion for the Active Phase is the canonical phase
+receipt criterion, must execute `/record_phase_completion` before
+continuing the loop.
 Must stop looping when the starting Active Phase is listed in Completed Phases
 or Active Phase increments.
 Must run `/status_sync` exactly once after loop completion.
 Must emit updated `03_LEVITICUS/STATE_SUMMARY.md` conforming to
 `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`.
 Must not modify the latest active roadmap artifact.
+Must fail if final normalization leaves the starting Active Phase unresolved.
 
 Guardrails
 Must halt immediately if any internal `/resume` call fails.
+Must halt immediately if `/record_phase_completion` fails.
 Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts.
 Must not skip unmet Exit Criteria.
+Must not write a phase receipt unless all non-receipt Exit Criteria for that
+phase are directly proven.
 Must not blend execution across multiple phases in a single `/resume` step.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Internal `/resume` call failed.
+`/record_phase_completion` failed.
 State summary schema deviation.
 Roadmap version mismatch between state summary and latest active roadmap artifact.
 Active Phase mismatch between roadmap and state summary.
 Iteration cap reached before phase completion.
 Cross-phase editing attempt.
+Starting Active Phase remained active after final normalization.
 
 Deterministic Advancement Rule
 `/resume_phase` is complete only when the starting Active Phase has been

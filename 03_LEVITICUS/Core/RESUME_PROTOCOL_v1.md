@@ -80,16 +80,16 @@ Objective constraints:
 - stays within Active Phase scope
 - is executable without reinterpretation
 
-For an `implementation` phase, canonical phase-receipt criteria are ordinary
-Exit Criteria and must be evaluated with the rest of the phase.
+Canonical phase-receipt criteria are ordinary Exit Criteria and must be
+evaluated with the rest of the phase.
 
 If all non-receipt Exit Criteria are true and the first unmet criterion
-requires the canonical implementation-phase receipt, set
+requires the canonical phase-completion receipt, set
 Next Deterministic Objective to run `/record_phase_completion` for the Active
 Phase and write the canonical receipt artifact.
 
-Do not mark an implementation phase complete before its receipt criteria
-evaluate TRUE.
+Do not mark a phase complete before its required receipt criteria evaluate
+TRUE.
 
 If all exit criteria are already true:
 - mark Active Phase complete
@@ -111,8 +111,8 @@ If all exit criteria are already true:
   Completed Phases and resume it.
 - Unrecorded completion: if a phase satisfies all exit criteria but is not
   listed completed, add it.
-- Receipt drift: if an implementation-phase receipt exists but one-or-more
-  non-receipt Exit Criteria fail, treat the phase as incomplete and resume it.
+- Receipt drift: if a phase receipt exists but one-or-more non-receipt Exit
+  Criteria fail, treat the phase as incomplete and resume it.
 - Artifact drift: if artifacts exist outside phase Produced Artifacts, append a
   Deferred Registry entry with origin phase.
 

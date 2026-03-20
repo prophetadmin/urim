@@ -6,8 +6,8 @@ Command Name
 Purpose
 Validate a roadmap artifact against `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`,
 requirements-ledger coverage, and seed-coverage requirements so roadmap
-acceptance cannot pass on documentation-only or receipt-omitting
-implementation criteria.
+acceptance cannot pass on documentation-only implementation criteria or
+receipt-omitting phase criteria.
 
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
@@ -115,22 +115,22 @@ Validation Checks (All Required)
     roadmap validation fails when no Exit Criterion beyond file existence and
     generic smoke proves the required realized behavior for that artifact set.
 
-35. Every `implementation` phase includes its canonical phase completion
-    receipt path under `03_LEVITICUS/Execution/` in `Produced Artifacts`.
+35. Every phase includes its canonical phase completion receipt path under
+    `03_LEVITICUS/Execution/` in `Produced Artifacts`.
 
-36. Every implementation-phase receipt path matches the roadmap version and
-    phase identifier of the phase that declares it.
+36. Every phase receipt path matches the roadmap version and phase identifier
+    of the phase that declares it.
 
-37. Every `implementation` phase includes an Exit Criterion requiring file
-    existence at its canonical receipt path.
+37. Every phase includes an Exit Criterion requiring file existence at its
+    canonical receipt path.
 
-38. Every `implementation` phase includes an Exit Criterion requiring the
-    canonical receipt path to be generated strictly from
+38. Every phase includes an Exit Criterion requiring the canonical receipt
+    path to be generated strictly from
     `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema
     deviation.
 
-39. No `implementation` phase can complete through pre-existing sufficiency
-    unless its canonical project-pass receipt criteria are also satisfied.
+39. No phase can complete while its canonical project-pass receipt criteria
+    remain unmet.
 
 Failure Contract
 - Structural or grammar failure: `SCHEMA_VIOLATION`
@@ -141,4 +141,3 @@ Output Contract
 Emit only one of:
 - `PASS`
 - `FAIL <CODE>: <single-line reason>`
-

@@ -1,6 +1,6 @@
-# ROADMAP SCHEMA v2 - Implementation-Bearing Phase Template
+# ROADMAP SCHEMA v2 - Phase-Receipt-Bearing Phase Template
 
-Schema Revision: v2.2
+Schema Revision: v2.3
 
 ## 1. Scope
 
@@ -139,15 +139,8 @@ An `implementation` phase MUST satisfy all of the following:
 - At least one Produced Artifact MUST be a non-documentation implementation
   artifact under `02_EXODUS/` (for example executable/module/service/surface/
   test harness).
-- `Produced Artifacts` MUST include the canonical implementation-phase receipt
-  path under `03_LEVITICUS/Execution/` using the pattern
-  `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`.
 - Exit Criteria MUST NOT be satisfiable using only `.md` artifacts plus
   file-exists or anchor checks.
-- Exit Criteria MUST include both of the following receipt conditions for the
-  canonical implementation-phase receipt path:
-  - `File exists at <canonical receipt path>.`
-  - `<canonical receipt path> is generated strictly from 03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md without schema deviation.`
 - Command criteria MUST NOT be exclusively dry-run commands.
 - Produced Artifacts MUST NOT be exclusively governance or planning artifacts
   under `01_GENESIS/` or `03_LEVITICUS/`.
@@ -159,6 +152,18 @@ If any rule above is not met: `ARCHITECTURE_COVERAGE_FAILURE`.
 A `validation` phase MUST contain at least three command-based Exit Criteria.
 At least one command criterion MUST exercise the end-to-end system path required
 by the seed's declared problem and scope boundaries.
+
+### 6.3 Phase Receipt Rules
+
+Every phase MUST include its canonical phase-completion receipt path under
+`03_LEVITICUS/Execution/` using the pattern:
+
+`03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`
+
+Exit Criteria for every phase MUST include both of the following receipt
+conditions for the canonical phase receipt path:
+- `File exists at <canonical receipt path>.`
+- `<canonical receipt path> is generated strictly from 03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md without schema deviation.`
 
 ## 7. Requirements Coverage Rule
 
@@ -229,8 +234,8 @@ A phase is COMPLETE if and only if:
 
 If any Exit Criterion is unmet, the phase remains ACTIVE.
 
-For `implementation` phases, required canonical phase-receipt criteria are part
-of this rule and have no advisory status.
+Required canonical phase-receipt criteria are part of this rule and have no
+advisory status.
 
 `Produced Artifacts` declares the artifacts expected to be created or updated by
 that phase. Any artifact whose existence is required for completion must also be
@@ -266,10 +271,10 @@ is written.
 An implementation phase is invalid if all listed produced artifacts can satisfy
 completion through pre-existing existence checks plus generic smoke execution.
 
-### 10.2 Implementation Phase Receipt Rule
+### 10.2 Phase Completion Receipt Rule
 
-Every `implementation` phase MUST include its canonical receipt path in
-`Produced Artifacts` using:
+Every phase MUST include its canonical receipt path in `Produced Artifacts`
+using:
 
 `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`
 
@@ -279,25 +284,37 @@ The matching `Exit Criteria` for that phase MUST require both:
   `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema
   deviation
 
-Receipt criteria are mandatory completion conditions for implementation phases.
+Receipt criteria are mandatory completion conditions for every phase.
 They do not replace artifact-specific or command-based proof for the phase's
-repository-owned implementation obligations.
+repository-owned obligations.
 
 The receipt may be written only after all non-receipt Exit Criteria in that
-implementation phase are proven directly.
+phase are proven directly.
 
 Receipt content MUST record the project-pass realization mode for that phase as
 one of:
 - `create`
 - `validate`
 - `extend`
+- `prove`
+- `reprove`
+- `mixed`
+
+Implementation phases may use:
+- `create`
+- `validate`
+- `extend`
+- `mixed`
+
+Validation phases may use:
+- `prove`
+- `reprove`
 - `mixed`
 
 Pre-existing implementation artifacts, anchors, or passing commands do not
 satisfy the receipt requirement by themselves.
 
-An implementation phase remains ACTIVE until its canonical receipt criteria
-evaluate TRUE.
+A phase remains ACTIVE until its canonical receipt criteria evaluate TRUE.
 
 `Failure Signals` are diagnostic indicators for validation and drift handling.
 They do not add independent completion conditions unless a phase explicitly
@@ -308,7 +325,7 @@ any effect on phase state.
 
 ## 11. Schema Authority
 
-This document defines `ROADMAP_SCHEMA_v2` with revision `v2.2`.
+This document defines `ROADMAP_SCHEMA_v2` with revision `v2.3`.
 
 Any roadmap generated under v2 command contracts MUST conform exactly to this
 schema. Deviation from required headings, required order, criteria grammar,
@@ -367,3 +384,12 @@ Change summary for revision `v2.2`:
   `implementation` phase.
 - Clarified that pre-existing artifact sufficiency is not phase completion
   until the canonical receipt is written for that roadmap version and phase.
+
+## 15. Delta v2.3
+
+Change summary for revision `v2.3`:
+- Generalized canonical project-pass completion receipts to all phase types.
+- Required validation-phase receipt paths under `03_LEVITICUS/Execution/`.
+- Required receipt existence and receipt-schema Exit Criteria for every phase.
+- Clarified that no phase is complete until its canonical receipt criteria
+  evaluate TRUE.

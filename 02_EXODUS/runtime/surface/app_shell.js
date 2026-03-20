@@ -1,6 +1,7 @@
 "use strict";
 
 const PANEL_IDS = Object.freeze(["chat", "evidence", "system"]);
+const QUERY_RESULT_MESSAGE = "urim:query-result";
 
 function createShellState(initialPanel = "chat") {
   return {
@@ -28,6 +29,12 @@ function renderShell(state) {
       element.hidden = state.active_panel !== panel;
     }
   });
+
+  const buttons = Array.from(document.querySelectorAll("[data-panel]"));
+  buttons.forEach((button) => {
+    const panelId = button.getAttribute("data-panel");
+    button.setAttribute("aria-pressed", String(panelId === state.active_panel));
+  });
 }
 
 function attachAppShell() {
@@ -44,6 +51,26 @@ function attachAppShell() {
       renderShell(state);
     });
   });
+
+  const shellStatus = document.getElementById("shell-status");
+  const evidenceFrame = document.getElementById("evidence-frame");
+
+  window.addEventListener("message", (event) => {
+    const payload = event?.data;
+    if (!payload || payload.type !== QUERY_RESULT_MESSAGE) {
+      return;
+    }
+
+    if (shellStatus) {
+      const count = Array.isArray(payload.sources) ? payload.sources.length : 0;
+      shellStatus.textContent = `Latest query support_state: ${payload.support_state || "unknown"} (${count} sources)`;
+    }
+
+    if (evidenceFrame?.contentWindow) {
+      evidenceFrame.contentWindow.postMessage(payload, "*");
+    }
+  });
+
   return { attached: true };
 }
 

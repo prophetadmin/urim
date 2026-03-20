@@ -166,16 +166,16 @@ If any implementation phase allows listed produced artifacts to satisfy
 completion through pre-existing file presence plus generic smoke execution,
 HALT with `ARCHITECTURE_COVERAGE_FAILURE`.
 
-If any implementation phase omits its canonical phase completion receipt path
-under `03_LEVITICUS/Execution/`, HALT with
+If any phase omits its canonical phase completion receipt path under
+`03_LEVITICUS/Execution/`, HALT with
 `ARCHITECTURE_COVERAGE_FAILURE`.
 
-If any implementation phase omits receipt existence or receipt-schema Exit
-Criteria tied to the roadmap version and phase identifier, HALT with
+If any phase omits receipt existence or receipt-schema Exit Criteria tied to
+the roadmap version and phase identifier, HALT with
 `ARCHITECTURE_COVERAGE_FAILURE`.
 
-If any implementation phase can complete through pre-existing sufficiency
-without its canonical project-pass receipt, HALT with
+If any phase can complete while its canonical project-pass receipt criteria
+remain unmet, HALT with
 `ARCHITECTURE_COVERAGE_FAILURE`.
 
 Bootstrap Proof Gate (Mandatory)
@@ -250,8 +250,8 @@ Must enforce criteria grammar and phase-type rules from
 Must reject any roadmap whose implementation phases allow listed produced
 artifacts to satisfy completion through pre-existing file presence plus generic
 smoke execution.
-Must reject any roadmap whose implementation phases omit canonical
-project-pass receipt artifacts or receipt-aware completion criteria.
+Must reject any roadmap whose phases omit canonical project-pass receipt
+artifacts or receipt-aware completion criteria.
 If an upstream derived bootstrap artifact cannot support compliant roadmap
 generation under the active contracts, must rerun the earliest affected
 bootstrap stage after any authorized prompt or schema correction rather than

@@ -30,10 +30,10 @@ Guardrails
 Must not edit roadmap content.
 Must not include historical narrative.
 Must derive phase state from roadmap exit criteria and schema rules.
-Must treat canonical implementation-phase receipt criteria as ordinary required
-Exit Criteria.
-Must not mark an implementation phase complete when non-receipt criteria are
-true but required receipt criteria remain unmet.
+Must treat canonical phase receipt criteria as ordinary required Exit
+Criteria.
+Must not mark a phase complete when non-receipt criteria are true but required
+receipt criteria remain unmet.
 Must resolve required local canonical artifacts from the workspace filesystem
 when available.
 Must not request the user to paste local roadmap, state-summary, or receipt
@@ -46,7 +46,7 @@ Roadmap version mismatch between state summary and latest active roadmap artifac
 Multiple Current Work Artifact fields.
 Completed Phases containing non-identifiers.
 Objective not tied to the first unmet Active Phase Exit Criterion.
-Implementation phase advanced without canonical phase receipt criteria satisfied.
+Phase advanced without required canonical phase receipt criteria satisfied.
 
 Deterministic Advancement Rule
 `/status_sync` completes only when written `03_LEVITICUS/STATE_SUMMARY.md`

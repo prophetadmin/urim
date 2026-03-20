@@ -27,8 +27,8 @@ Final PASS requires all criteria PASS.
 If FAIL, include exactly one Next Deterministic Objective for the first unmet
 criterion.
 Output is ephemeral and must not be written to project artifacts.
-For `implementation` phases, ephemeral validation output does not replace the
-canonical receipt required for completion.
+Ephemeral validation output does not replace any canonical phase receipt
+required for completion.
 
 Guardrails
 Must not modify artifacts.

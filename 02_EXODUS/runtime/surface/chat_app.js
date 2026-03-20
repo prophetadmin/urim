@@ -1,4 +1,5 @@
 "use strict";
+const QUERY_RESULT_MESSAGE = "urim:query-result";
 
 function asArray(value) {
   return Array.isArray(value) ? value : [];
@@ -31,6 +32,25 @@ function toUiAnswer(workflowResult = {}) {
 function appendLog(logElement, text) {
   logElement.textContent = `${logElement.textContent}${text}\n`;
   logElement.scrollTop = logElement.scrollHeight;
+}
+
+function publishQueryResult(result = {}) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const answer = result?.answer || {};
+  const payload = {
+    type: QUERY_RESULT_MESSAGE,
+    support_state: String(answer.support_state || "insufficient"),
+    answer: String(answer.answer || ""),
+    sources: Array.isArray(answer.sources) ? answer.sources : []
+  };
+
+  window.dispatchEvent(new CustomEvent(QUERY_RESULT_MESSAGE, { detail: payload }));
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage(payload, "*");
+  }
 }
 
 function createRuntimeBridge(options = {}) {
@@ -100,6 +120,7 @@ function attachChatApp(options = {}) {
       if (uiAnswer.sources.length > 0) {
         appendLog(logElement, `sources: ${uiAnswer.sources.join(", ")}`);
       }
+      publishQueryResult(result);
       transcript.push({
         role: "assistant",
         content: uiAnswer.answer,

@@ -4,18 +4,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>URIM Application Shell</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ecf1f7;
+      color: #1a2230;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    header {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid #cfd8e3;
+      background: #ffffff;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    button[data-panel] {
+      border: 1px solid #2b5f93;
+      border-radius: 6px;
+      background: #ffffff;
+      color: #2b5f93;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button[data-panel][aria-pressed="true"] {
+      background: #2b5f93;
+      color: #ffffff;
+    }
+    #shell-status {
+      margin-left: auto;
+      font-size: 0.92rem;
+      color: #4a5a6d;
+    }
+    main {
+      min-height: 0;
+      padding: 10px;
+    }
+    .panel-frame {
+      width: 100%;
+      height: calc(100vh - 125px);
+      border: 1px solid #ced8e3;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+    footer {
+      font-size: 0.88rem;
+      color: #57687e;
+      padding: 8px 12px 12px;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <button data-panel="chat">Chat</button>
-    <button data-panel="evidence">Evidence</button>
-    <button data-panel="system">System</button>
+    <button data-panel="chat" aria-pressed="true">Chat</button>
+    <button data-panel="evidence" aria-pressed="false">Evidence</button>
+    <button data-panel="system" aria-pressed="false">System</button>
+    <div id="shell-status">Ready.</div>
   </header>
   <main>
-    <section id="panel-chat">Chat workspace</section>
-    <section id="panel-evidence" hidden>Evidence layer</section>
-    <section id="panel-system" hidden>System configuration layer</section>
+    <section id="panel-chat">
+      <iframe id="chat-frame" class="panel-frame" title="Chat Surface" src="./chat_app.html"></iframe>
+    </section>
+    <section id="panel-evidence" hidden>
+      <iframe id="evidence-frame" class="panel-frame" title="Evidence Surface" src="./evidence_panel.html"></iframe>
+    </section>
+    <section id="panel-system" hidden>
+      <iframe id="system-frame" class="panel-frame" title="System Surface" src="./system_config_panel.html"></iframe>
+    </section>
   </main>
+  <footer>Entry path: <code>/app_shell.html</code></footer>
   <script src="./app_shell.js"></script>
 </body>
 </html>

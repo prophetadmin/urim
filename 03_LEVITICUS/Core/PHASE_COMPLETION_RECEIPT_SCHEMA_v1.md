@@ -1,19 +1,17 @@
-# `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md` SCHEMA v1 - Canonical Implementation Phase Receipt
+# `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md` SCHEMA v1 - Canonical Phase Completion Receipt
 
 ## 1. Scope
 
-This schema defines the required structure for canonical implementation-phase
-completion receipts written under `03_LEVITICUS/Execution/`.
+This schema defines the required structure for canonical phase-completion
+receipts written under `03_LEVITICUS/Execution/`.
 
 Receipts under this schema are project-pass evidence artifacts.
 They record that direct proof was obtained for every non-receipt Exit Criterion
-of one implementation phase in the active roadmap version.
-
-Validation-phase completion is not recorded through this schema.
+of one phase in the active roadmap version.
 
 ## 2. Canonical Path Rule
 
-The canonical receipt path for an implementation phase is:
+The canonical receipt path for a phase is:
 
 `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`
 
@@ -36,13 +34,13 @@ The path MUST bind exactly one roadmap version and one phase identifier.
 <Exact phase title from the roadmap block>
 
 **Phase Type**
-implementation
+<Exact phase type from the roadmap block>
 
 **Receipt Status**
 PASS
 
 **Realization Mode**
-<One of: `create`, `validate`, `extend`, `mixed`>
+<One of: `create`, `validate`, `extend`, `prove`, `reprove`, `mixed`>
 
 **Validated By**
 `/record_phase_completion`
@@ -61,22 +59,28 @@ top-level fields.
 - the version token encoded in the receipt path
 
 `Phase Identifier` must match both:
-- the implementation phase identifier in the active roadmap
+- the phase identifier in the active roadmap
 - the identifier encoded in the receipt path
 
 `Phase Title` must match the exact roadmap phase title for the referenced
-implementation phase.
+phase.
 
-`Phase Type` must be the literal value `implementation`.
+`Phase Type` must match the exact phase type declared in the referenced roadmap
+phase.
 
 `Receipt Status` must be the literal value `PASS`.
 
-`Realization Mode` records how this project pass realized the phase boundary:
+`Realization Mode` is the canonical backward-compatible field name for how this
+project pass completed the phase boundary:
 - `create` when required implementation artifacts were created in this pass
 - `validate` when pre-existing implementation artifacts were directly proven
   sufficient in this pass without required extension
 - `extend` when pre-existing implementation artifacts required repository-owned
   extension in this pass
+- `prove` when a validation phase was completed through direct project-pass
+  proof without superseding an earlier receipt
+- `reprove` when a validation phase required renewed direct project-pass proof
+  for the same roadmap version and phase identifier
 - `mixed` when the phase required more than one of the modes above
 
 `Verified Exit Criteria` must:
@@ -88,7 +92,7 @@ implementation phase.
 
 ## 5. Minimalism Rule
 
-Implementation phase receipts must remain structurally minimal.
+Phase completion receipts must remain structurally minimal.
 
 They MUST NOT contain:
 - historical narrative
@@ -104,7 +108,7 @@ They function as canonical project-pass completion receipts, not as work logs.
 
 This document defines `PHASE_COMPLETION_RECEIPT_SCHEMA_v1`.
 
-Any canonical implementation-phase receipt written under
-`03_LEVITICUS/Execution/` must conform exactly to this schema.
+Any canonical phase-completion receipt written under `03_LEVITICUS/Execution/`
+must conform exactly to this schema.
 Deviation from the canonical path rule, required structure, or structural
 constraints constitutes schema violation.

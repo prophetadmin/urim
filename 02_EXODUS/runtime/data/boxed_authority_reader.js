@@ -51,7 +51,7 @@ async function readBoxedAuthority(metadata, options = {}) {
     source_id: String(metadata.source_id),
     markdown,
     sidecars: {
-      meta: JSON.parse(metaRaw),
+      meta: JSON.parse(String(metaRaw).replace(/^\uFEFF/, "")),
       sha256: checksum.trim()
     },
     paths

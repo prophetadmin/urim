@@ -31,8 +31,8 @@ Guardrails
 Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts.
 Must halt if the objective does not advance one unmet Exit Criterion.
-Must not select phase advancement for an implementation phase before canonical
-receipt criteria are satisfied.
+Must not select phase advancement when required canonical phase receipt
+criteria for the Active Phase remain unmet.
 Must resolve required local canonical artifacts from the workspace filesystem
 when available.
 Must not request the user to paste local roadmap, state-summary, or receipt
@@ -46,7 +46,7 @@ Roadmap version mismatch between state summary and active roadmap artifact.
 Completed Phases containing descriptive text.
 Cross-phase editing attempt.
 Phase advancement attempted before all Exit Criteria are met.
-Implementation phase advancement attempted before canonical receipt criteria are met.
+Phase advancement attempted before required canonical receipt criteria are met.
 
 Deterministic Advancement Rule
 `/resume` completes only when one objective advances exactly one unmet Exit

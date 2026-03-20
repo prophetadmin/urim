@@ -1,4 +1,5 @@
 "use strict";
+const QUERY_RESULT_MESSAGE = "urim:query-result";
 
 function mapSourcesToEvidenceRows(sources = []) {
   const input = Array.isArray(sources) ? sources : [];
@@ -36,6 +37,21 @@ function attachEvidencePanel(options = {}) {
 
   const initialSources = Array.isArray(options.sources) ? options.sources : [];
   renderEvidencePanel(body, initialSources);
+
+  const update = (sources) => renderEvidencePanel(body, sources);
+  window.setEvidenceSources = update;
+
+  window.addEventListener("message", (event) => {
+    const payload = event?.data;
+    if (payload?.type === QUERY_RESULT_MESSAGE) {
+      update(payload.sources);
+    }
+  });
+
+  window.addEventListener(QUERY_RESULT_MESSAGE, (event) => {
+    update(event?.detail?.sources);
+  });
+
   return { attached: true };
 }
 

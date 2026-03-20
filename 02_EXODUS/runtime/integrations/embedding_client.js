@@ -2,10 +2,33 @@
 
 const DEFAULT_EMBEDDING_API_BASE_URL =
   process.env.LOCAL_EMBEDDING_API_BASE_URL || "http://127.0.0.1:8084";
-const EMBEDDING_ENDPOINT_PATH = "/embedding"; // POST /embedding
+const EMBEDDING_ENDPOINT_PATH = "/embedding";
 
 function buildEmbeddingUrl(baseUrl = DEFAULT_EMBEDDING_API_BASE_URL) {
   return new URL(EMBEDDING_ENDPOINT_PATH, `${baseUrl}/`).toString();
+}
+
+function extractEmbeddingVector(payload) {
+  const candidates = [
+    payload?.embedding,
+    payload?.data?.[0]?.embedding,
+    payload?.value?.[0]?.embedding?.[0],
+    payload?.value?.[0]?.embedding,
+    payload?.[0]?.embedding?.[0],
+    payload?.[0]?.embedding
+  ];
+
+  for (const candidate of candidates) {
+    if (
+      Array.isArray(candidate) &&
+      candidate.length > 0 &&
+      typeof candidate[0] === "number"
+    ) {
+      return candidate;
+    }
+  }
+
+  throw new Error("Embedding response did not include an embedding vector.");
 }
 
 async function createEmbedding(text, options = {}) {
@@ -30,14 +53,7 @@ async function createEmbedding(text, options = {}) {
   }
 
   const payload = await response.json();
-  if (Array.isArray(payload.embedding)) {
-    return payload.embedding;
-  }
-  if (Array.isArray(payload.data) && Array.isArray(payload.data[0]?.embedding)) {
-    return payload.data[0].embedding;
-  }
-
-  throw new Error("Embedding response did not include an embedding vector.");
+  return extractEmbeddingVector(payload);
 }
 
 module.exports = {

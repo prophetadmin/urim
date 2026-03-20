@@ -16,18 +16,27 @@ function classifySupportState(resolvedAuthorities = []) {
   return "insufficient";
 }
 
+function clip(text, maxChars) {
+  const value = String(text || "");
+  if (value.length <= maxChars) {
+    return value;
+  }
+  return `${value.slice(0, maxChars)}\n...[truncated]`;
+}
+
 function buildGroundedPrompt(question, resolvedAuthorities = []) {
   const authorityContent = resolvedAuthorities
+    .slice(0, 3)
     .map((item, index) => {
       const identity = item?.stable_source_identity || `source-${index + 1}`;
-      const markdown = item?.authority?.markdown || "";
+      const markdown = clip(item?.authority?.markdown || "", 2500);
       return `Source ${index + 1} (${identity}):\n${markdown}`;
     })
     .join("\n\n");
 
-  // The answer basis is resolved authority content, never payload-only retrieval text.
   return [
     "Use only the provided authority excerpts to answer.",
+    "If the excerpts are insufficient, say so.",
     `Question: ${question}`,
     "",
     "Authority excerpts:",
@@ -46,21 +55,18 @@ async function assembleGroundedAnswer(input = {}, options = {}) {
     : [];
   const supportState = classifySupportState(resolvedAuthorities);
 
-  const chatClient = options.chatClient || requestChatCompletion;
-  const completion = await chatClient(
+  const completionClient = options.chatClient || requestChatCompletion;
+  const completion = await completionClient(
     {
-      messages: [
-        {
-          role: "user",
-          content: buildGroundedPrompt(question, resolvedAuthorities)
-        }
-      ]
+      model: "model.gguf",
+      prompt: buildGroundedPrompt(question, resolvedAuthorities),
+      max_tokens: 400
     },
     options.chatOptions || {}
   );
 
   const answerText =
-    completion?.choices?.[0]?.message?.content ||
+    completion?.choices?.[0]?.text ||
     completion?.output_text ||
     "";
 
