@@ -1,16 +1,18 @@
 **Active Phase**
-1
+2
 
 **Roadmap Version**
 v1
 
 **Completed Phases**
+- 1
 
 **Current Work Artifact**
-03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md
+02_EXODUS/tests/phase2_workflow_policy_smoke.ps1
 
 **Open Risks**
-- Canonical implementation-phase receipts for phases 1 through 3 are absent under `03_LEVITICUS/Execution/`, so receipt-aware completion cannot be derived from filesystem state.
+- Canonical implementation-phase receipts for phases 2 and 3 are absent under `03_LEVITICUS/Execution/`, so receipt-aware completion cannot be derived for those phases from filesystem state.
+- Phase 2 command exit-code evidence is session-ephemeral and must be directly re-proven before canonical receipt emission.
 - Phase 4 command exit-code evidence remains session-ephemeral and must be re-executed after implementation-phase receipts exist.
 
 **Deferred Registry**
@@ -22,4 +24,4 @@ v1
   Status: Open
 
 **Next Deterministic Objective**
-Generate `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md` strictly from `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`.
+Run `powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase2_workflow_policy_smoke.ps1` and require exit code 0.
