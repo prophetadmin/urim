@@ -1,20 +1,17 @@
 **Active Phase**
-4
+1
 
 **Roadmap Version**
 v1
 
 **Completed Phases**
-- 1
-- 2
-- 3
 
 **Current Work Artifact**
-02_EXODUS/tests/e2e_grounded_query_validation.ps1
+03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md
 
 **Open Risks**
-- Phase 4 command exit-code evidence is not persisted in canonical artifacts and must be re-executed on resume.
-- Additional execution beyond `03_LEVITICUS/PROJECT_ROADMAP_v1.md` would require explicit roadmap revision intent.
+- Canonical implementation-phase receipts for phases 1 through 3 are absent under `03_LEVITICUS/Execution/`, so receipt-aware completion cannot be derived from filesystem state.
+- Phase 4 command exit-code evidence remains session-ephemeral and must be re-executed after implementation-phase receipts exist.
 
 **Deferred Registry**
 - ID: DR-001
@@ -25,4 +22,4 @@ v1
   Status: Open
 
 **Next Deterministic Objective**
-Run `powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1`.
+Generate `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md` strictly from `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`.

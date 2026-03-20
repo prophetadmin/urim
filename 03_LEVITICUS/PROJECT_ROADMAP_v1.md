@@ -1,3 +1,12 @@
+**Roadmap Version**
+v1
+
+**Supersedes**
+None
+
+**Revision Rationale**
+Initial bootstrap generation from `01_GENESIS/PROJECT_SEED.md`, `01_GENESIS/REQUIREMENTS_LEDGER.md`, and `01_GENESIS/COMPONENT_REALIZATION_MAP.md`.
+
 **Requirements Coverage Matrix**
 - `REQ-1` -> 3 -> `02_EXODUS/runtime/surface/app_shell.html`, `02_EXODUS/runtime/surface/app_shell.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase3_surface_session_smoke.ps1" exits with code 0.`
 - `REQ-2` -> 3 -> `02_EXODUS/runtime/surface/chat_app.html`, `02_EXODUS/runtime/surface/chat_app.js`, `02_EXODUS/runtime/surface/chat_surface.css` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1" exits with code 0.`
@@ -6,12 +15,12 @@
 - `REQ-5` -> 2, 3 -> `02_EXODUS/runtime/workflow/query_orchestrator.js`, `02_EXODUS/runtime/workflow/navigation_state.js`, `02_EXODUS/runtime/services/grounded_answer_service.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1" exits with code 0.`
 - `REQ-6` -> 1, 4 -> `02_EXODUS/runtime/integrations/chat_api_client.js`, `02_EXODUS/runtime/integrations/embedding_client.js`, `02_EXODUS/runtime/integrations/qdrant_client.js`, `02_EXODUS/runtime/services/urim_foundation_adapter.js`, `02_EXODUS/runtime/services/urim_foundation_registry.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.`
 - `REQ-7` -> 1, 4 -> `02_EXODUS/runtime/workflow/retrieval_metadata_normalizer.js`, `02_EXODUS/runtime/resolver/boxed_authority_resolver.js`, `02_EXODUS/runtime/data/boxed_authority_reader.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.`
-- `REQ-8` -> 1, 2, 4 -> `02_EXODUS/runtime/integrations/qdrant_client.js`, `02_EXODUS/runtime/workflow/query_orchestrator.js` -> `02_EXODUS/runtime/workflow/query_orchestrator.js contains the exact anchor string: "vector_locator_only".`
-- `REQ-9` -> 3, 4 -> `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/session/session_serializer.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
-- `REQ-10` -> 2, 3, 4 -> `02_EXODUS/runtime/services/grounded_answer_service.js`, `02_EXODUS/runtime/policy/policy_enforcer.js`, `02_EXODUS/runtime/policy/support_state_model.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
+- `REQ-8` -> 1, 2 -> `02_EXODUS/runtime/integrations/qdrant_client.js`, `02_EXODUS/runtime/workflow/query_orchestrator.js` -> `02_EXODUS/runtime/workflow/query_orchestrator.js contains the exact anchor string: "vector_locator_only".`
+- `REQ-9` -> 3 -> `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/session/session_serializer.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
+- `REQ-10` -> 2, 3 -> `02_EXODUS/runtime/services/grounded_answer_service.js`, `02_EXODUS/runtime/policy/policy_enforcer.js`, `02_EXODUS/runtime/policy/support_state_model.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
 - `REQ-11` -> 3 -> `02_EXODUS/runtime/surface/app_shell.html`, `02_EXODUS/runtime/surface/chat_app.html`, `02_EXODUS/runtime/surface/evidence_panel.html`, `02_EXODUS/runtime/surface/system_config_panel.html` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase3_surface_session_smoke.ps1" exits with code 0.`
 - `REQ-12` -> 1, 3, 4 -> `02_EXODUS/runtime/resolver/boxed_authority_resolver.js`, `02_EXODUS/runtime/data/boxed_authority_reader.js`, `02_EXODUS/runtime/surface/evidence_panel.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.`
-- `REQ-13` -> 2, 3, 4 -> `02_EXODUS/runtime/policy/disclosure_state_controller.js`, `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/surface/chat_app.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
+- `REQ-13` -> 2, 3 -> `02_EXODUS/runtime/policy/disclosure_state_controller.js`, `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/surface/chat_app.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
 - `REQ-14` -> 4 -> `02_EXODUS/tests/phase1_integration_smoke.ps1`, `02_EXODUS/tests/phase2_workflow_policy_smoke.ps1`, `02_EXODUS/tests/phase3_surface_session_smoke.ps1`, `02_EXODUS/tests/e2e_grounded_query_validation.ps1`, `02_EXODUS/tests/support_state_validation.ps1`, `02_EXODUS/tests/source_disclosure_and_session_validation.ps1`, `02_EXODUS/tests/resolver_metadata_validation.ps1`, `02_EXODUS/tests/validation_harness.ps1` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/validation_harness.ps1" exits with code 0.`
 
 **Component Coverage Matrix**
@@ -22,8 +31,8 @@
 - `COMP-5` -> 2, 3 -> `02_EXODUS/runtime/workflow/query_orchestrator.js`, `02_EXODUS/runtime/workflow/navigation_state.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase2_workflow_policy_smoke.ps1" exits with code 0.`
 - `COMP-6` -> 1, 4 -> `02_EXODUS/runtime/workflow/retrieval_metadata_normalizer.js`, `02_EXODUS/runtime/resolver/boxed_authority_resolver.js`, `02_EXODUS/runtime/data/boxed_authority_reader.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.`
 - `COMP-7` -> 1 -> `02_EXODUS/runtime/integrations/chat_api_client.js`, `02_EXODUS/runtime/integrations/embedding_client.js`, `02_EXODUS/runtime/integrations/qdrant_client.js`, `02_EXODUS/runtime/services/urim_foundation_adapter.js`, `02_EXODUS/runtime/services/urim_foundation_registry.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.`
-- `COMP-8` -> 2, 4 -> `02_EXODUS/runtime/services/grounded_answer_service.js`, `02_EXODUS/runtime/policy/policy_enforcer.js`, `02_EXODUS/runtime/policy/interaction_policy_controller.js`, `02_EXODUS/runtime/policy/disclosure_state_controller.js`, `02_EXODUS/runtime/policy/support_state_model.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
-- `COMP-9` -> 3, 4 -> `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/session/session_serializer.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
+- `COMP-8` -> 2, 3 -> `02_EXODUS/runtime/services/grounded_answer_service.js`, `02_EXODUS/runtime/policy/policy_enforcer.js`, `02_EXODUS/runtime/policy/interaction_policy_controller.js`, `02_EXODUS/runtime/policy/disclosure_state_controller.js`, `02_EXODUS/runtime/policy/support_state_model.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
+- `COMP-9` -> 3 -> `02_EXODUS/runtime/session/session_store.js`, `02_EXODUS/runtime/session/session_serializer.js` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
 - `COMP-10` -> 4 -> `02_EXODUS/tests/phase1_integration_smoke.ps1`, `02_EXODUS/tests/phase2_workflow_policy_smoke.ps1`, `02_EXODUS/tests/phase3_surface_session_smoke.ps1`, `02_EXODUS/tests/e2e_grounded_query_validation.ps1`, `02_EXODUS/tests/support_state_validation.ps1`, `02_EXODUS/tests/source_disclosure_and_session_validation.ps1`, `02_EXODUS/tests/resolver_metadata_validation.ps1`, `02_EXODUS/tests/validation_harness.ps1` -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/validation_harness.ps1" exits with code 0.`
 
 **Seed Coverage Matrix**
@@ -34,7 +43,7 @@
 - Execution routing and control that forwards chat queries into the existing runtime and local services. -> 2, 3 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1" exits with code 0.`
 - Integration with the existing runtime without decomposing or redefining its internal logic. -> 1 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.`
 - Boxed-authority resolution that reads readable authority only from boxed artifacts. -> 1, 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.`
-- Session persistence and disclosure control owned by the repository application layer. -> 3, 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
+- Session persistence and disclosure control owned by the repository application layer. -> 3 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.`
 - Executable validation that proves the runtime path, authority resolution path, and user-facing behavior path. -> 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/validation_harness.ps1" exits with code 0.`
 - The application layer must explicitly wire into the existing runtime and local services without redefining the runtime's internal logic. -> 1 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.`
 - No requirement, component, or roadmap phase may assign ownership to the internal artifacts of the existing runtime. -> 1, 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.`
@@ -42,7 +51,7 @@
 - No roadmap phase may claim files from the existing runtime as produced outputs. -> 1, 2, 3, 4 -> `All required subsections defined in Section 3 are present exactly once.`
 - The query path must route through a repository-owned execution routing and control layer before invoking the existing runtime and local services. -> 2, 3 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1" exits with code 0.`
 - Readable authority must be resolved exclusively from boxed artifacts. -> 1, 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.`
-- The application layer must expose truthful failure states when any part of the runtime path breaks. -> 2, 3, 4 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
+- The application layer must expose truthful failure states when any part of the runtime path breaks. -> 2, 3 -> `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.`
 
 ### PHASE 1 - Establish External Integrations And Boxed Authority Boundaries
 
@@ -81,6 +90,8 @@ Create, validate, or extend the repository-owned integration, resolver, and boxe
 - `02_EXODUS/runtime/resolver/boxed_authority_resolver.js` contains the exact anchor string: "stable_source_identity".
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase1_integration_smoke.ps1" exits with code 0.
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/resolver_metadata_validation.ps1" exits with code 0.
+- File exists at `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md`.
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md` is generated strictly from `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema deviation.
 
 **Produced Artifacts**
 - `02_EXODUS/runtime/integrations/chat_api_client.js`
@@ -91,6 +102,7 @@ Create, validate, or extend the repository-owned integration, resolver, and boxe
 - `02_EXODUS/runtime/workflow/retrieval_metadata_normalizer.js`
 - `02_EXODUS/runtime/resolver/boxed_authority_resolver.js`
 - `02_EXODUS/runtime/data/boxed_authority_reader.js`
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_1_RECEIPT.md`
 
 **Failure Signals**
 - `02_EXODUS/tests/phase1_integration_smoke.ps1` exits non-zero.
@@ -135,6 +147,8 @@ Create, validate, or extend the repository-owned workflow, answer-assembly, and 
 - `02_EXODUS/runtime/policy/policy_enforcer.js` contains the exact anchor string: "no_model_switching".
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase2_workflow_policy_smoke.ps1" exits with code 0.
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/support_state_validation.ps1" exits with code 0.
+- File exists at `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_2_RECEIPT.md`.
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_2_RECEIPT.md` is generated strictly from `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema deviation.
 
 **Produced Artifacts**
 - `02_EXODUS/runtime/workflow/query_orchestrator.js`
@@ -144,6 +158,7 @@ Create, validate, or extend the repository-owned workflow, answer-assembly, and 
 - `02_EXODUS/runtime/policy/interaction_policy_controller.js`
 - `02_EXODUS/runtime/policy/disclosure_state_controller.js`
 - `02_EXODUS/runtime/policy/support_state_model.js`
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_2_RECEIPT.md`
 
 **Failure Signals**
 - `02_EXODUS/tests/phase2_workflow_policy_smoke.ps1` exits non-zero.
@@ -195,6 +210,8 @@ Create, validate, or extend the repository-owned browser surfaces and session co
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/phase3_surface_session_smoke.ps1" exits with code 0.
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/source_disclosure_and_session_validation.ps1" exits with code 0.
 - Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/e2e_grounded_query_validation.ps1" exits with code 0.
+- File exists at `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_3_RECEIPT.md`.
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_3_RECEIPT.md` is generated strictly from `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema deviation.
 
 **Produced Artifacts**
 - `02_EXODUS/runtime/surface/app_shell.html`
@@ -210,6 +227,7 @@ Create, validate, or extend the repository-owned browser surfaces and session co
 - `02_EXODUS/runtime/surface/system_config_state.js`
 - `02_EXODUS/runtime/session/session_store.js`
 - `02_EXODUS/runtime/session/session_serializer.js`
+- `03_LEVITICUS/Execution/ROADMAP_v1_PHASE_3_RECEIPT.md`
 
 **Failure Signals**
 - `02_EXODUS/tests/phase3_surface_session_smoke.ps1` exits non-zero.
