@@ -1,62 +1,60 @@
-﻿# URIM App - Runtime Completion
+# URIM
 
-This workspace exists to test, prove, and complete the operational runtime path
-for URIM App.
+This is the canonical URIM repository.
 
-It is not a replacement for the main `urim-app` repository. It is a focused
-follow-on workspace built from the inherited `02_EXODUS/` implementation so the
-remaining launchability and live-runtime gaps can be identified clearly and, if
-validated, fed back into the canonical app repo.
+It preserves merged history from two connected lines:
 
-## Why This Workspace Exists
+- the earlier URIM line
+- the later runtime-completion continuation line, which inherited earlier URIM
+  EXODUS material and advanced the project further
 
-The main `urim-app` repository reached roadmap completion and passed its
-planned validation gates. However, one important question remains:
+These lines are not competing active products. History is plural, but authority
+at HEAD is singular.
 
-Can the current runtime be launched and exercised as a real local application
-against live local services and real boxed-authority data, rather than only
-through structural and simulated validation?
+## Historical Context
 
-This workspace exists to answer that question cleanly.
+The earlier line reflects execution under MetaDictum Framework v1.
 
-## Scope
+The later runtime-completion line was not a MetaDictum v2-governed run. It is
+the execution record from which hardening observations were gathered, and those
+observations later contributed to what became MetaDictum v2.
 
-This project is for:
+That continuation line remains significant because it established the runnable
+local app path, surfaced live operational gaps, and materially advanced the
+project beyond the earlier line.
 
-- proving the actual runnable entry path for the existing runtime
-- verifying live integration against local chat, embedding, and Qdrant
-  endpoints
-- verifying real boxed-authority resolution against the actual boxed corpus
-- identifying missing launch, bridge, host, or operator-facing runtime pieces
-- defining the minimum work needed to make the runtime genuinely launchable and
-  testable as a local application
+## Active Authority At HEAD
 
-This project is not for:
+The single canonical active roadmap at HEAD is:
+`03_LEVITICUS/PROJECT_ROADMAP_v1.md`
 
-- redoing the original URIM App product roadmap
-- replacing the URIM engine architecture
-- inventing a new app concept unrelated to the copied implementation
-- polishing branding or documentation before runtime truth is established
+`03_LEVITICUS/STATE_SUMMARY.md` remains aligned to that roadmap.
 
-## Starting Point
+Canonical phase receipts under `03_LEVITICUS/Execution/` remain the active
+execution evidence for completed phases.
 
-This workspace inherits `02_EXODUS/` from the completed `urim-app` repository.
-That copied implementation is treated as the starting reality.
+`03_LEVITICUS/Historical/PROJECT_ROADMAP_v2_DERIVATIONAL_PROVENANCE.md` is
+preserved as historical derivational provenance and is not active execution
+authority at HEAD.
 
-The purpose of this workspace is to determine what that implementation actually
-proves in live runtime conditions, what it does not yet prove, and what must be
-added or repaired to close the gap.
+## Runtime Entry Path
 
-## Desired Outcome
+Launch the local app with:
 
-A successful result from this workspace would establish one or more of the
-following:
+`powershell -ExecutionPolicy Bypass -File 02_EXODUS/runtime/start_local_app.ps1`
 
-- a real local launch path for the current runtime
-- live endpoint validation against the configured local services
-- confirmed Qdrant-backed retrieval and boxed-authority resolution behavior
-- a clear list of missing runtime-completion work that can be applied back to
-  `urim-app`
+The Node host serves the application at:
 
-In short: this is a runtime-completion and proof workspace, not a fresh product
-ideation workspace.
+`http://127.0.0.1:8787/app_shell.html`
+
+Primary runtime entry files:
+- `02_EXODUS/runtime/start_local_app.ps1`
+- `02_EXODUS/runtime/host/local_app_host.js`
+- `02_EXODUS/runtime/surface/app_shell.html`
+- `02_EXODUS/runtime/surface/chat_app.html`
+
+## Repository Role
+
+This repository is the canonical product repository for URIM. It preserves
+origin, continuation, governance, evidence, and runtime implementation in one
+place without rewriting the historical record.

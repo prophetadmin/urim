@@ -6,22 +6,30 @@ This file defines binding runtime behavior for agents in this workspace.
 Goal: keep execution deterministic and lightweight while preserving bootstrap artifacts for future reuse.
 
 ## Scope
-Applies to this template project only.
+Applies to this repository at HEAD.
 
 ## Authority Order
 1. Filesystem state
 2. `03_LEVITICUS/Contracts/project_charter.md`
-3. Canonical project artifacts (latest `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`, `03_LEVITICUS/STATE_SUMMARY.md`, canonical phase receipts under `03_LEVITICUS/Execution/`)
+3. Canonical project artifacts (`03_LEVITICUS/PROJECT_ROADMAP_v1.md`, `03_LEVITICUS/STATE_SUMMARY.md`, canonical phase receipts under `03_LEVITICUS/Execution/`, and explicitly approved canon)
 4. Chat output
 
 Chat is never authoritative over repository state.
+
+## Active Roadmap Authority
+The single canonical active roadmap at HEAD is:
+`03_LEVITICUS/PROJECT_ROADMAP_v1.md`
+
+Roadmap authority is determined by this explicit designation and by alignment
+with `03_LEVITICUS/STATE_SUMMARY.md` and canonical receipts, not by highest
+version number or latest filename alone.
 
 ## Mode Switch (Automatic)
 Scaffold placeholders may exist at canonical generated-output paths in a fresh
 clone. Scaffold placeholders do not count as generated artifacts.
 
-Bootstrap is complete when any generated roadmap artifact matching
-`03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` exists.
+Bootstrap is complete when the designated active roadmap artifact exists at:
+`03_LEVITICUS/PROJECT_ROADMAP_v1.md`
 
 A roadmap artifact counts as generated only when it contains at least one phase
 block heading matching:
@@ -34,7 +42,7 @@ No manual flags are required.
 
 ## Execution Mode (Default)
 ### Always Read
-- latest `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+- `03_LEVITICUS/PROJECT_ROADMAP_v1.md`
 - `03_LEVITICUS/STATE_SUMMARY.md`
 - `03_LEVITICUS/Contracts/project_charter.md`
 
@@ -157,8 +165,10 @@ Rules:
 - Do not rewrite evidence/log intent without explicit instruction.
 
 ## Session Start Procedure
-1. Detect mode by generated roadmap existence, not raw file presence.
-2. Load only files allowed by that mode.
+1. Detect mode by the designated active roadmap artifact, not by the raw
+   presence of a historical roadmap artifact.
+2. Load the active roadmap designated in this file and only then load other
+   files allowed by that mode.
 3. In Execution Mode, run `/status_sync` first.
 4. Execute work from roadmap phases via `/resume`, `/record_phase_completion`,
    and `/resume_phase` as required by roadmap exit criteria.
